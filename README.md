@@ -1,138 +1,64 @@
-# Image Classification Project
+# CIFAR-10 Image Classification (PyTorch)
 
-This project implements an image classification model using PyTorch to classify images from the CIFAR-10 dataset. The CIFAR-10 dataset consists of 60,000 32x32 color images in 10 different classes, with 6,000 images per class.
+A computer vision project developed in PyTorch for classifying images from the CIFAR-10 dataset, with a strong focus on data augmentation and comprehensive model evaluation. The project is implemented in Python to leverage the extensive ecosystem of data science tools and PyTorch’s dynamic computation graph.
 
-## Project Structure
+The main goal of this project was to implement a robust training pipeline that includes heavy data augmentation to improve generalization and detailed performance metrics beyond simple accuracy.
 
-```
-convnet.pth
-copy_of_hw1_image_colorization_24_25.py
-copy_of_hw2_simplified_object_detection_24_25.py
-fftnet.pth
-homework1_flowchart/
-homework2_flowchart/
-image_classification_25_26.py
-model_cnn.pth
-model_fcn.pth
-background/
-data/
-    cifar-10-batches-py/
-        batches.meta
-        data_batch_1
-        data_batch_2
-        data_batch_3
-        data_batch_4
-        data_batch_5
-        readme.html
-        test_batch
-objects/
-practice/
-runs/
-    CIFAR10/
-        events.out.tfevents.1771340162.DESKTOP-NVQ7O0J.14708.0
-        events.out.tfevents.1771340780.DESKTOP-NVQ7O0J.60776.0
-```
+---
 
-## Output
+# Features
 
-```
-Input size (MB): 0.01
-Forward/backward pass size (MB): 1.54
-Params size (MB): 2.62
-Estimated Total Size (MB): 4.17
-----------------------------------------------------------------
-Start Training  cuda:0
-Epoch 0000: train loss 2.2255, valid loss 2.0979
-Epoch 0001: train loss 2.0464, valid loss 1.9268
-Epoch 0002: train loss 1.9290, valid loss 1.8416
-Epoch 0003: train loss 1.8752, valid loss 1.8188
-Epoch 0004: train loss 1.8312, valid loss 1.7452
-Epoch 0005: train loss 1.7936, valid loss 1.7017
-Epoch 0006: train loss 1.7667, valid loss 1.7047
-Epoch 0007: train loss 1.7421, valid loss 1.6544
-Epoch 0008: train loss 1.7178, valid loss 1.6273
-Epoch 0009: train loss 1.6935, valid loss 1.6384
-Finished Training
-Accuracy of the network on the 10000 test images: 35 %
-Accuracy for class plane is: 19.5 %
-Accuracy for class car   is: 55.1 %
-Accuracy for class bird  is: 25.3 %
-Accuracy for class cat   is: 13.7 %
-Accuracy for class deer  is: 29.8 %
-Accuracy for class dog   is: 43.7 %
-Accuracy for class frog  is: 49.3 %
-Accuracy for class horse is: 45.7 %
-Accuracy for class ship  is: 53.3 %
-Accuracy for class truck is: 30.6 %
-```
+- Multi-class image classification (10 classes)
+- Custom Convolutional Neural Network (CNN) architecture
+- Advanced data augmentation pipeline
+- Automatic training/validation dataset splitting
+- Model checkpointing (saves best model by validation loss)
+- Comprehensive evaluation (Confusion Matrix, Class-wise Accuracy)
+- Training metric visualization
 
-## Observations
+---
 
-The model achieved an overall accuracy of **35%** on the CIFAR-10 test dataset. The accuracy for individual classes varies significantly, with the highest accuracy for the "car" class (55.1%) and the lowest for the "cat" class (13.7%).
+# Data & Model Architecture
 
-## Possible Improvements
+The project focuses on deep learning best practices for small image datasets:
 
-To improve the model's performance, consider the following:
+### Robust Data Augmentation
+To prevent overfitting and improve model robustness, the pipeline applies heavy transformations including Random Affine (rotation/translation/scale), Random Perspective distortions, and Color Jitter (brightness/contrast/saturation) during training.
 
-1. **Model Architecture**:
-   - Use a deeper and more complex architecture, such as ResNet, VGG, or EfficientNet.
-   - Add more convolutional layers, batch normalization, and dropout to the current architecture.
+### Validation Strategy
+Instead of relying solely on training loss, the system splits the training data (90/10 split) to create a dedicated validation set. This ensures that the model performance is monitored on unseen data during the training phase.
 
-2. **Hyperparameter Tuning**:
-   - Experiment with different learning rates, optimizers (e.g., Adam, RMSprop), and batch sizes.
+### Best Model Checkpointing
+The training loop actively monitors validation loss. It automatically saves the model state only when validation performance improves, ensuring the final artifact is the most generalized version, not just the result of the last epoch.
 
-3. **Data Augmentation**:
-   - Apply techniques like random cropping, flipping, rotation, color jittering, and normalization to increase data diversity.
+---
 
-4. **Learning Rate Scheduler**:
-   - Use a learning rate scheduler to reduce the learning rate as training progresses.
+# Tech Stack
 
-5. **Training Duration**:
-   - Train the model for more epochs (e.g., 50 or 100) while monitoring the training and validation loss to avoid overfitting.
+- Python
+- PyTorch
+- Torchvision
+- Matplotlib
+- Scikit-learn
+- TensorBoard
 
-6. **Regularization**:
-   - Add dropout layers and use weight decay (L2 regularization) in the optimizer.
+---
 
-7. **Pretrained Models**:
-   - Fine-tune a pretrained model (e.g., ResNet, VGG) on the CIFAR-10 dataset.
+# Core Systems
 
-8. **Data Preprocessing**:
-   - Ensure input images are normalized using the mean and standard deviation of the dataset.
+- Convolutional feature extraction
+- Stochastic Gradient Descent (SGD) optimization
+- Cross-Entropy loss calculation
+- Confusion Matrix generation and plotting
+- Training and Validation loss tracking
+- Automated data downloading and preprocessing
 
-9. **Class Imbalance**:
-   - Handle class imbalance using oversampling, undersampling, or class weighting.
+---
 
-10. **Evaluation Metrics**:
-    - Use additional metrics like precision, recall, and F1-score to better understand the model's performance.
+# Build & Run
 
-## How to Run
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd <repository-folder>
-   ```
-
-2. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Run the training script:
+1. Clone the repository
+2. Install dependencies (PyTorch, Matplotlib, Scikit-learn)
+3. Run the script:
    ```bash
    python image_classification_25_26.py
-   ```
-
-4. View the training logs in the `runs/` directory.
-
-## Requirements
-
-- Python 3.8+
-- PyTorch
-- torchvision
-- numpy
-- matplotlib
-
-## License
-
-This project is licensed under the MIT License.
