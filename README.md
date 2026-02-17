@@ -1,6 +1,6 @@
 # CIFAR-10 Image Classification (PyTorch)
 
-A computer vision project developed in PyTorch for classifying images from the CIFAR-10 dataset, with a strong focus on data augmentation and comprehensive model evaluation. The project is implemented in Python with the most ppular data science tools and PyTorch’s dynamic computation graph.
+A computer vision project developed in PyTorch for classifying images from the CIFAR-10 dataset, with a strong focus on data augmentation and comprehensive model evaluation. The project is implemented in Python with the most popular data science tools and PyTorch’s dynamic computation graph.
 
 The main goal of this project was to implement a robust training pipeline that includes data augmentation to improve generalization and detailed performance metrics beyond simple accuracy.
 
