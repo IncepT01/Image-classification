@@ -1,8 +1,8 @@
 # CIFAR-10 Image Classification (PyTorch)
 
-A computer vision project developed in PyTorch for classifying images from the CIFAR-10 dataset, with a strong focus on data augmentation and comprehensive model evaluation. The project is implemented in Python to leverage the extensive ecosystem of data science tools and PyTorch’s dynamic computation graph.
+A computer vision project developed in PyTorch for classifying images from the CIFAR-10 dataset, with a strong focus on data augmentation and comprehensive model evaluation. The project is implemented in Python with the most ppular data science tools and PyTorch’s dynamic computation graph.
 
-The main goal of this project was to implement a robust training pipeline that includes heavy data augmentation to improve generalization and detailed performance metrics beyond simple accuracy.
+The main goal of this project was to implement a robust training pipeline that includes data augmentation to improve generalization and detailed performance metrics beyond simple accuracy.
 
 ---
 
@@ -23,10 +23,10 @@ The main goal of this project was to implement a robust training pipeline that i
 The project focuses on deep learning best practices for small image datasets:
 
 ### Robust Data Augmentation
-To prevent overfitting and improve model robustness, the pipeline applies heavy transformations including Random Affine (rotation/translation/scale), Random Perspective distortions, and Color Jitter (brightness/contrast/saturation) during training.
+To prevent overfitting and improve model robustness, the pipeline applies transformations including Random Affine (rotation/translation/scale), Random Perspective distortions, and Color Jitter (brightness/contrast/saturation) during training.
 
 ### Validation Strategy
-Instead of relying solely on training loss, the system splits the training data (90/10 split) to create a dedicated validation set. This ensures that the model performance is monitored on unseen data during the training phase.
+Instead of relying solely on training loss, the system splits the training data (90/10 split) to create a dedicated validation set. This ensures that the model performance is monitored on unseen data during the training phase. In addition a separate test dataset is created with no data augmentation, for accurate testing.
 
 ### Best Model Checkpointing
 The training loop actively monitors validation loss. It automatically saves the model state only when validation performance improves, ensuring the final artifact is the most generalized version, not just the result of the last epoch.
